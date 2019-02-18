@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margins -->
+    <dimen name="margin_invite_friends">2dp</dimen>
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_xxx_medium_large">28dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="padding_invite_friends">10dp</dimen>
+    <dimen name="padding_tiny">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_normal">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_xxx_medium_large">28dp</dimen>
+
+    <!-- Text -->
+    <dimen name="marker_text_size">8sp</dimen>
+    <dimen name="text_size_very_small">12sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_big">20sp</dimen>
+
+    <dimen name="marker_size">16dp</dimen>
+</resources>
