@@ -8,7 +8,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -36,7 +35,6 @@ import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
 
 import java.util.List;
-import java.util.Set;
 
 
 import butterknife.ButterKnife;
@@ -50,12 +48,14 @@ public class MapsActivity extends MvpAppCompatActivity implements OnMapReadyCall
 
     private GoogleMap mMap;
     private ClusterManager<ClusterHelperModel> mClusterManager;
+    private float mDensity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         ButterKnife.bind(this);
+        mDensity = getResources().getDisplayMetrics().density;
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         if (mapFragment != null) mapFragment.getMapAsync(this);
@@ -120,6 +120,8 @@ public class MapsActivity extends MvpAppCompatActivity implements OnMapReadyCall
             final Drawable clusterIcon = getResources().getDrawable(R.drawable.ic_red_round);
             mIconGenerator.setBackground(clusterIcon);
             mIconGenerator.setTextAppearance(mContext, R.style.ClusterText);
+            mIconGenerator.setContentPadding(getPadding(6), getPadding(3),
+                    getPadding(3), getPadding(2));
             Bitmap icon = mIconGenerator.makeIcon(mPresenter.calculateAverage((List<ClusterHelperModel>) cluster.getItems()));
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon));
         }
@@ -148,6 +150,10 @@ public class MapsActivity extends MvpAppCompatActivity implements OnMapReadyCall
                 drawable.draw(canvas);
             customMarkerView.draw(canvas);
             return returnedBitmap;
+        }
+
+        private int getPadding(int var) {
+            return (int) (var * mDensity);
         }
     }
 }

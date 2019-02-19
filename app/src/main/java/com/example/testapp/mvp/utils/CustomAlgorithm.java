@@ -68,8 +68,8 @@ public class CustomAlgorithm<T extends ClusterItem> implements Algorithm<T> {
     }
 
     public Set<? extends Cluster<T>> getClusters(double zoom) {
-        int discreteZoom = (int) (zoom * 1.35);
-        double zoomSpecificSpan = 60.55D / Math.pow(2.0D, (double) discreteZoom) / 180.0D;
+        int discreteZoom = (int) (zoom * 1.4);
+        double zoomSpecificSpan = 64.4D / Math.pow(2.0D, (double) discreteZoom) / 180.0D;
         Set<CustomAlgorithm.QuadItem<T>> visitedCandidates = new HashSet();
         Set<Cluster<T>> results = new HashSet();
         Map<QuadItem<T>, Double> distanceToCluster = new HashMap();

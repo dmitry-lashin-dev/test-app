@@ -16,8 +16,13 @@ public class MapsPresenter extends MvpPresenter<MapsView> {
 
     private static final double CENTER_LAT = 48.980410627489725;
     private static final double CENTER_LNG = 33.29531762748957;
+    private static final double WEST_LAT = 49.682233908431904;
+    private static final double WEST_LNG = 27.30910688638687;
+    private static final double SOUTH_LAT = 46.939901872279606;
+    private static final double SOUTH_LNG = 33.42568807303905;
     private static final int COUNT_OF_MARKER = 100;
     private static final int RANDOM_BOUND = 2;
+    private static final int RANDOM_BOUND_FOR_TITLE = 10;
 
     public void createDataForZoomMap() {
         LatLng latLng = new LatLng(CENTER_LAT, CENTER_LNG);
@@ -28,8 +33,16 @@ public class MapsPresenter extends MvpPresenter<MapsView> {
         List<MarkerModel> markerModels = new ArrayList<>();
         for (int i = 0; i < COUNT_OF_MARKER; i++) {
             MarkerModel model = new MarkerModel();
-            model.setLat(getRandomLat());
-            model.setLng(getRandomLng());
+            if (i % 4 == 0) {
+                model.setLat(getRandomLat(CENTER_LAT));
+                model.setLng(getRandomLng(CENTER_LNG));
+            } else if (i % 3 == 0) {
+                model.setLat(getRandomLat(WEST_LAT));
+                model.setLng(getRandomLng(WEST_LNG));
+            } else if (i % 5 == 0) {
+                model.setLat(getRandomLat(SOUTH_LAT));
+                model.setLng(getRandomLng(SOUTH_LNG));
+            }
             model.setNumber(getRandomNumber());
             markerModels.add(model);
         }
@@ -48,18 +61,18 @@ public class MapsPresenter extends MvpPresenter<MapsView> {
         getViewState().showRandomMarker(clusterHelperModels);
     }
 
-    private double getRandomLat() {
+    private double getRandomLat(double startPosition) {
         Random random = new Random();
-        return CENTER_LAT + random.nextDouble() + new Random().nextInt(RANDOM_BOUND);
+        return startPosition + random.nextDouble() + new Random().nextInt(RANDOM_BOUND);
     }
 
-    private double getRandomLng() {
+    private double getRandomLng(double startPosition) {
         Random random = new Random();
-        return CENTER_LNG + random.nextDouble() - new Random().nextInt(RANDOM_BOUND);
+        return startPosition + random.nextDouble() - new Random().nextInt(RANDOM_BOUND);
     }
 
     private int getRandomNumber() {
-        return new Random().nextInt(RANDOM_BOUND);
+        return new Random().nextInt(RANDOM_BOUND_FOR_TITLE);
     }
 
     public String calculateAverage(List<ClusterHelperModel> models) {
