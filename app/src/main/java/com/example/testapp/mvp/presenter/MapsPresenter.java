@@ -17,7 +17,7 @@ public class MapsPresenter extends MvpPresenter<MapsView> {
     private static final double CENTER_LAT = 48.980410627489725;
     private static final double CENTER_LNG = 33.29531762748957;
     private static final int COUNT_OF_MARKER = 100;
-    private static final int RANDOM_BOUND = 10;
+    private static final int RANDOM_BOUND = 2;
 
     public void createDataForZoomMap() {
         LatLng latLng = new LatLng(CENTER_LAT, CENTER_LNG);

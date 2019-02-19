@@ -19,6 +19,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.testapp.R;
 import com.example.testapp.mvp.model.ClusterHelperModel;
 import com.example.testapp.mvp.presenter.MapsPresenter;
+import com.example.testapp.mvp.utils.CustomAlgorithm;
 import com.example.testapp.mvp.view.MapsView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,8 +36,9 @@ import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
 
 import java.util.List;
+import java.util.Set;
 
-import butterknife.BindView;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -45,7 +47,6 @@ public class MapsActivity extends MvpAppCompatActivity implements OnMapReadyCall
     private static final float MAP_ZOOM = 4.7f;
 
     @InjectPresenter MapsPresenter mPresenter;
-    @BindView(R.id.refresh_btn) FloatingActionButton mRefresh;
 
     private GoogleMap mMap;
     private ClusterManager<ClusterHelperModel> mClusterManager;
@@ -64,6 +65,7 @@ public class MapsActivity extends MvpAppCompatActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mClusterManager = new ClusterManager<>(this, mMap);
+        mClusterManager.setAlgorithm(new CustomAlgorithm<ClusterHelperModel>());
         mMap.setOnCameraIdleListener(mClusterManager);
         mPresenter.createDataForZoomMap();
     }
