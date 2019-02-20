@@ -20,6 +20,8 @@ public class MapsPresenter extends MvpPresenter<MapsView> {
     private static final double WEST_LNG = 27.30910688638687;
     private static final double SOUTH_LAT = 46.939901872279606;
     private static final double SOUTH_LNG = 33.42568807303905;
+    private static final double EAST_LAT = 48.06527934414339;
+    private static final double EAST_LNG = 37.879710383713245;
     private static final int COUNT_OF_MARKER = 100;
     private static final int RANDOM_BOUND = 2;
     private static final int RANDOM_BOUND_FOR_TITLE = 10;
@@ -42,6 +44,9 @@ public class MapsPresenter extends MvpPresenter<MapsView> {
             } else if (i % 5 == 0) {
                 model.setLat(getRandomLat(SOUTH_LAT));
                 model.setLng(getRandomLng(SOUTH_LNG));
+            } else {
+                model.setLat(getRandomLat(EAST_LAT));
+                model.setLng(getRandomLng(EAST_LNG));
             }
             model.setNumber(getRandomNumber());
             markerModels.add(model);
